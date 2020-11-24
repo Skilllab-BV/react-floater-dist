@@ -97,6 +97,9 @@ export interface Props {
    */
   hideArrow?: boolean;
 
+  /**
+   * Override arrow
+   */
   getArrowShape?: (placement: Placement, x: number, y: number) => React.ReactNode;
   /**
    * In case that you need to identify the portal.
