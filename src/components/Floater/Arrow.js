@@ -6,11 +6,13 @@ export default class FloaterArrow extends React.Component {
     placement: PropTypes.string.isRequired,
     setArrowRef: PropTypes.func.isRequired,
     styles: PropTypes.object.isRequired,
+    getArrowShape: PropTypes.func,
   };
 
   get parentStyle() {
     const { placement, styles } = this.props;
     const { length } = styles.arrow;
+
     const arrow = {
       pointerEvents: 'none',
       position: 'absolute',
@@ -41,10 +43,11 @@ export default class FloaterArrow extends React.Component {
   }
 
   render() {
-    const { placement, setArrowRef, styles } = this.props;
+    const { placement, setArrowRef, styles, getArrowShape } = this.props;
     const {
       arrow: { color, display, length, margin, position, spread },
     } = styles;
+
     const arrowStyles = { display, position };
 
     let points;
@@ -81,9 +84,13 @@ export default class FloaterArrow extends React.Component {
     return (
       <div className="__floater__arrow" style={this.parentStyle}>
         <span ref={setArrowRef} style={arrowStyles}>
-          <svg width={x} height={y} version="1.1" xmlns="http://www.w3.org/2000/svg">
-            <polygon points={points} fill={color} />
-          </svg>
+          {getArrowShape ? (
+            getArrowShape(placement, x, y)
+          ) : (
+            <svg width={x} height={y} version="1.1" xmlns="http://www.w3.org/2000/svg">
+              <polygon points={points} fill={color} />
+            </svg>
+          )}
         </span>
       </div>
     );

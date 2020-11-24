@@ -18,6 +18,7 @@ export default class Floater extends React.Component {
     placement: PropTypes.string.isRequired,
     positionWrapper: PropTypes.bool.isRequired,
     setArrowRef: PropTypes.func.isRequired,
+    getArrowShape: PropTypes.func,
     setFloaterRef: PropTypes.func.isRequired,
     showCloseButton: PropTypes.bool,
     status: PropTypes.string.isRequired,
